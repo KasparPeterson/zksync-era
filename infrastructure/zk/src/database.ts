@@ -62,7 +62,7 @@ export async function setup() {
     process.chdir(process.env.ZKSYNC_HOME as string);
 }
 
-export async function wait(tries: number = 4) {
+export async function wait(tries: number = 10) {
     for (let i = 0; i < tries; i++) {
         const result = await utils.allowFail(utils.exec(`pg_isready -d "${process.env.DATABASE_URL}"`));
         if (result !== null) return; // null means failure
